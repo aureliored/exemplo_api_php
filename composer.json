@@ -11,7 +11,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Application\\": "src/Application"
+            "Application\\": "src/Application",
+            "Product\\": "src/Product"
         }
     },
     "require": {}

@@ -5,4 +5,5 @@ require __APP_ROOT__ . '\vendor\autoload.php';
 use Application\Application; 
 
 $app = new Application();
-$app->init();
+$app->init()
+    ->start();
