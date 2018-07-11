@@ -83,7 +83,7 @@ class Route
         foreach ($this->routes[$method] as $route => $data) {
 			if (preg_match($route, $uri, $parameters)) {
 				array_shift($parameters);
-				call_user_func($data);
+				call_user_func_array($data,[]);
 				return $this;
             }
 		}

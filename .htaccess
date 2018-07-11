@@ -1,4 +1,4 @@
-# sudo a2enmod modrewrite
+ # sudo a2enmod modrewrite
 
 Options +FollowSymLinks
 

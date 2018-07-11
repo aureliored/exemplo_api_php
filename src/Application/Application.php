@@ -11,6 +11,7 @@ class Application
     public function __construct()
     {
         $this->config = require __APP_ROOT__ . '\\config\\local.php';
+        
         $this->route = new Route($this->config['module']);
     }
     
