@@ -24,8 +24,10 @@ class ProductRepository
         
         $data = $this->service->dataToInsert($values);
 
+        $fields = $this->service->fieldToInsert();
+
         $insert = "INSERT INTO tb_product 
-        (name, photo, description, value,length, height, width,  weight, created_in) 
+        ({$fields}, created_in) 
         VALUES ({$data})";
 
         try {
@@ -87,10 +89,18 @@ class ProductRepository
         $sql .= $limit ?? '';
 
         try {
-            return $this->db->fetchAll($sql);
+            $data = $this->db->fetchAll($sql);
+            $response = $this->service->toApp($data);
+            return $this
+                    ->response
+                    ->setSuccess('Atualizado com sucesso.', $response)
+                    ->getReturn();
         } catch(PDOException $e) {
-            return $e->message;
-        } 
+            return $this
+                    ->response
+                    ->setFail('Erro ao listar.', $e->message)
+                    ->getReturn();
+        }
     }
 
     public function findId($id)

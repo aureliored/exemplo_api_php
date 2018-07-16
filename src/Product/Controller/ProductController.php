@@ -21,7 +21,9 @@ class ProductController
     {  
         $repository = new ProductRepository();
         $response = new Response();
+        
         $values = json_decode(file_get_contents('php://input'), true);
+
         $data = $repository->insert($values);
         print $response->setSuccess('Success',$data)
                     ->jsonResponse();
@@ -66,6 +68,6 @@ class ProductController
         $data = $repository->update($values, $_GET['id']);
         print $response->setSuccess('Success',$data)
                     ->jsonResponse();
-        return true;
+         return true;
     }
 }

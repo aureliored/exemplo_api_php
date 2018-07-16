@@ -31,8 +31,10 @@ class Route
 	private function add($file)
 	{	
 		$routes = require $file;
-		foreach($routes as $method => $route ){
-			$this->on($method,$route);
+		foreach($routes as $method => $data ){
+			foreach($data as $route) {
+				$this->on($method, $route);
+			}
 		}	
 	}
 
@@ -42,7 +44,6 @@ class Route
         if (!isset($this->routes[$method])) {
             $this->routes[$method] = [];
 		}
-		
         $uri = substr($route['path'], 0, 1) !== '/' ? '/' . $route['path'] : $route['path'];
         $pattern = str_replace('/', '\/', $uri);
         $call = '/^' . $pattern . '$/';
